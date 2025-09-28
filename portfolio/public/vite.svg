@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="88" fill="#000000"/>
+
+  <!-- Stylized A: outer triangle -->
+  <path d="M256 64 L448 448 H64 Z" fill="#ffffff"/>
+  <!-- Inner cutout to create the hollow A -->
+  <path d="M256 156 L380 416 H132 Z" fill="#000000"/>
+
+  <!-- Crossbar with subtle gradient -->
+  <defs>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#BFBFBF"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/>
+      <feOffset in="blur" dx="0" dy="0" result="offset"/>
+      <feComposite in="offset" in2="SourceAlpha" operator="out" result="shadow"/>
+      <feBlend in="SourceGraphic" in2="shadow" mode="normal"/>
+    </filter>
+  </defs>
+
+  <!-- Crossbar -->
+  <rect x="156" y="292" width="200" height="28" rx="14" fill="url(#barGrad)" filter="url(#soft)"/>
+</svg>
