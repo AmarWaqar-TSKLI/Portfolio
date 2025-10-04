@@ -252,3 +252,91 @@ export const socials = [
   { name: "GitHub", href: "https://github.com/AmarWaqar-TSKLI" },
   { name: "Instagram", href: "https://www.instagram.com/amar._.waqar" }
 ];
+
+export const coursesData = [
+  {
+    id: "fs",
+    title: "Full-Stack Engineering",
+    description: "Foundations to deployment across the stack.",
+    courses: [
+      {
+        id: "fs-1",
+        title: "React - The Complete Guide",
+        provider: "Udemy",
+        completed: true,
+        verifyUrl: "https://ude.my/certificate/react-complete-guide",
+        image: "/assets/projects/ai-linter.png",
+      },
+      {
+        id: "fs-2",
+        title: "Node & Express Bootcamp",
+        provider: "Udemy",
+        completed: true,
+        verifyUrl: "https://ude.my/certificate/node-express-bootcamp",
+        image: "/assets/projects/smart-data-viz.png",
+      },
+      {
+        id: "fs-3",
+        title: "MongoDB Essentials",
+        provider: "MongoDB University",
+        completed: false,
+        verifyUrl: "https://university.mongodb.com/verify/essentials",
+        image: "/assets/projects/pr-insight-bot.png",
+      },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI & Applied Machine Learning",
+    description: "LLMs, APIs, and practical AI integrations.",
+    courses: [
+      {
+        id: "ai-1",
+        title: "Practical Deep Learning",
+        provider: "fast.ai",
+        completed: false,
+        verifyUrl: "https://course.fast.ai/verify/deep-learning",
+        image: "/assets/projects/ai-linter.png",
+      },
+      {
+        id: "ai-2",
+        title: "OpenAI API for Developers",
+        provider: "OpenAI",
+        completed: true,
+        verifyUrl: "https://platform.openai.com/verify/dev-course",
+        image: "/assets/projects/pr-insight-bot.png",
+      },
+      {
+        id: "ai-3",
+        title: "Data Visualization with Python",
+        provider: "Coursera",
+        completed: true,
+        verifyUrl: "https://coursera.org/verify/dataviz-python",
+        image: "/assets/projects/smart-data-viz.png",
+      },
+    ],
+  },
+  {
+    id: "sec",
+    title: "Performance & Security",
+    description: "Speed, hardening, and secure practices.",
+    courses: [
+      {
+        id: "sec-1",
+        title: "Web Performance Optimization",
+        provider: "Google",
+        completed: true,
+        verifyUrl: "https://web.dev/verify/perf-optimization",
+        image: "/assets/projects/voltmaster (1).png",
+      },
+      {
+        id: "sec-2",
+        title: "OWASP Top 10",
+        provider: "Coursera",
+        completed: false,
+        verifyUrl: "https://coursera.org/verify/owasp-top10",
+        image: "/assets/projects/insignia (1).png",
+      },
+    ],
+  },
+];

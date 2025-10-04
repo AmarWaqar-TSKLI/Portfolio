@@ -9,17 +9,17 @@ const Hero = () => {
                 ideas into unfair advantages crafted
                  through clean code & design.`;
   return (
-    <section id="home" className="flex flex-col justify-end min-h-screen">
+    <section
+      id="home"
+      className="relative flex flex-col justify-end min-h-screen overflow-x-hidden"
+    >
       <AnimatedHeaderSection
         subTitle={"404 No Bugs Found"}
         title={"Amar Waqar"}
         text={text}
         textColor={"text-black"}
       />
-      <figure
-        className="absolute inset-0 -z-50"
-        style={{ width: "100vw", height: "100vh" }}
-      >
+      <figure className="absolute inset-0 -z-50 w-full h-full">
         <Canvas
           shadows
           camera={{ position: [0, 0, -10], fov: 17.5, near: 1, far: 20 }}
