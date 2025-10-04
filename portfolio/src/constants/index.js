@@ -112,6 +112,13 @@ export const projects = [
       { id: 3, name: "PostgreSQL" },
       { id: 4, name: "Tailwind CSS" },
     ],
+    repoUrl: "https://github.com/your-org/zarqais", // replace when ready
+    liveUrl: "https://zarqais.com",
+    features: [
+      "Catalog browsing and search",
+      "Cart and checkout flow",
+      "Responsive design with Tailwind CSS",
+    ],
   },
   {
     id: 2,
@@ -126,6 +133,12 @@ export const projects = [
       { id: 2, name: "Express" },
       { id: 3, name: "MongoDB" },
       { id: 4, name: "Socket.IO" },
+    ],
+    repoUrl: "https://github.com/your-org/nym-chat", // replace when ready
+    features: [
+      "Realtime chat with Socket.IO",
+      "Anonymous + friends modes",
+      "AI assistants integration",
     ],
   },
   {
@@ -142,6 +155,12 @@ export const projects = [
       { id: 3, name: "Spring Boot" },
       { id: 4, name: "MariaDB" },
     ],
+    repoUrl: "https://github.com/your-org/softec", // replace when ready
+    features: [
+      "Role-based access control",
+      "Ticket sales customer portal",
+      "Hierarchical admin dashboard",
+    ],
   },
   {
     id: 4,
@@ -157,6 +176,13 @@ export const projects = [
       { id: 3, name: "MSSQL" },
       { id: 4, name: "Tailwind CSS" },
     ],
+    repoUrl: "https://github.com/your-org/gamestore", // replace when ready
+    liveUrl: "https://gamestore.example.com", // replace when live
+    features: [
+      "Trailers, reviews, and wishlists",
+      "Genre filters and search",
+      "Modern UI and smooth interactions",
+    ],
   },
   {
     id: 5,
@@ -171,6 +197,12 @@ export const projects = [
       { id: 2, name: "Express" },
       { id: 3, name: "Three.js" },
       { id: 4, name: "GSAP" },
+    ],
+    repoUrl: "https://github.com/your-org/3d-shirt-customizer", // replace when ready
+    features: [
+      "Texture and logo application",
+      "AI-generated designs",
+      "3D interactions with Three.js",
     ],
   },
   {
@@ -188,6 +220,12 @@ export const projects = [
       { id: 4, name: "Pandas" },
       { id: 5, name: "Plotly" },
     ],
+    repoUrl: "https://github.com/your-org/smart-data-wiz", // replace when ready
+    features: [
+      "Dataset upload and cleaning",
+      "Interactive charts",
+      "AI Q&A on data",
+    ],
   },
   {
     id: 7,
@@ -201,6 +239,12 @@ export const projects = [
       { id: 1, name: "Python" },
       { id: 2, name: "PyTorch" },
       { id: 3, name: "Machine Learning" },
+    ],
+    repoUrl: "https://github.com/your-org/ai-code-linter", // replace when ready
+    features: [
+      "Bug detection with LLMs",
+      "Actionable fix suggestions",
+      "Developer workflow integration",
     ],
   },
   {
@@ -216,6 +260,12 @@ export const projects = [
       { id: 2, name: "YAML" },
       { id: 3, name: "GitHub Actions" },
     ],
+    repoUrl: "https://github.com/your-org/pr-insight-bot", // replace when ready
+    features: [
+      "Automated PR reviews",
+      "Insights and recommendations",
+      "Seamless CI integration",
+    ],
   },
   {
     id: 9,
@@ -229,6 +279,12 @@ export const projects = [
       { id: 1, name: "C++" },
       { id: 2, name: "MySQL" },
       { id: 3, name: "Desktop Development" },
+    ],
+    repoUrl: "https://github.com/your-org/voltmaster", // replace when ready
+    features: [
+      "Usage scheduling",
+      "Electricity optimization",
+      "Cost reduction analytics",
     ],
   },
   {
@@ -244,6 +300,12 @@ export const projects = [
       { id: 2, name: "SFML" },
       { id: 3, name: "Game Development" },
     ],
+    repoUrl: "https://github.com/your-org/realm-of-enigmas", // replace when ready
+    features: [
+      "Story-driven gameplay",
+      "NPC interactions",
+      "Mini-games and puzzles",
+    ],
   },
 ];
 
@@ -255,87 +317,179 @@ export const socials = [
 
 export const coursesData = [
   {
-    id: "fs",
-    title: "Full-Stack Engineering",
-    description: "Foundations to deployment across the stack.",
+    id: "fe-meta",
+    title: "Frontend Development",
+    description: "Meta Front-End Developer · Coursera",
     courses: [
       {
-        id: "fs-1",
-        title: "React - The Complete Guide",
-        provider: "Udemy",
+        id: "fe-1",
+        title: "Programming with JavaScript",
+        provider: "Meta · Coursera",
         completed: true,
-        verifyUrl: "https://ude.my/certificate/react-complete-guide",
-        image: "/assets/projects/ai-linter.png",
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/K8FVSPQ6RETF",
+        image: "/assets/certs/Coursera K8FVSPQ6RETF-1.png",
       },
       {
-        id: "fs-2",
-        title: "Node & Express Bootcamp",
-        provider: "Udemy",
+        id: "fe-2",
+        title: "React Basics",
+        provider: "Meta · Coursera",
         completed: true,
-        verifyUrl: "https://ude.my/certificate/node-express-bootcamp",
-        image: "/assets/projects/smart-data-viz.png",
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/2KGZBC8J78IE",
+        image: "/assets/certs/Coursera 2KGZBC8J78IE-1.png",
       },
       {
-        id: "fs-3",
-        title: "MongoDB Essentials",
-        provider: "MongoDB University",
+        id: "fe-3",
+        title: "Advanced React",
+        provider: "Meta · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/4EQOY0YK6LGQ",
+        image: "/assets/certs/Coursera 4EQOY0YK6LGQ-1.png",
+      },
+      {
+        id: "fe-4",
+        title: "HTML and CSS in Depth",
+        provider: "Meta · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/Z0U5ZQ0PVMSV",
+        image: "/assets/certs/Coursera Z0U5ZQ0PVMSV-1.png",
+      },
+      {
+        id: "fe-5",
+        title: "Version Control",
+        provider: "Meta · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/CW4LFWCM8VEI",
+        image: "/assets/certs/Coursera CW4LFWCM8VEI-1.png",
+      },
+      {
+        id: "fe-6",
+        title: "Principles of UI/UX Design",
+        provider: "Meta · Coursera",
         completed: false,
-        verifyUrl: "https://university.mongodb.com/verify/essentials",
-        image: "/assets/projects/pr-insight-bot.png",
       },
     ],
   },
   {
-    id: "ai",
-    title: "AI & Applied Machine Learning",
-    description: "LLMs, APIs, and practical AI integrations.",
+    id: "py4e",
+    title: "Python for Everybody",
+    description: "University of Michigan · Coursera",
     courses: [
       {
-        id: "ai-1",
-        title: "Practical Deep Learning",
-        provider: "fast.ai",
+        id: "py4e-1",
+        title: "Programming for Everybody (Getting Started with Python)",
+        provider: "University of Michigan · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/MS1C6OOFEK93",
+        image: "/assets/certs/Coursera MS1C6OOFEK93-1.png",
+      },
+      {
+        id: "py4e-2",
+        title: "Python Data Structures",
+        provider: "University of Michigan · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/MMU210FA3S9P",
+        image: "/assets/certs/Coursera MMU210FA3S9P-1.png",
+      },
+      {
+        id: "py4e-3",
+        title: "Using Python to Access Web Data",
+        provider: "University of Michigan · Coursera",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/FQOH6FL1Q2JX",
+        image: "/assets/certs/Coursera FQOH6FL1Q2JX-1.png",
+      },
+      {
+        id: "py4e-4",
+        title: "Using Databases with Python",
+        provider: "University of Michigan · Coursera",
         completed: false,
-        verifyUrl: "https://course.fast.ai/verify/deep-learning",
-        image: "/assets/projects/ai-linter.png",
       },
       {
-        id: "ai-2",
-        title: "OpenAI API for Developers",
-        provider: "OpenAI",
-        completed: true,
-        verifyUrl: "https://platform.openai.com/verify/dev-course",
-        image: "/assets/projects/pr-insight-bot.png",
-      },
-      {
-        id: "ai-3",
-        title: "Data Visualization with Python",
-        provider: "Coursera",
-        completed: true,
-        verifyUrl: "https://coursera.org/verify/dataviz-python",
-        image: "/assets/projects/smart-data-viz.png",
+        id: "py4e-5",
+        title:
+          "Retrieving, Processing, and Visualizing Data with Python",
+        provider: "University of Michigan · Coursera",
+        completed: false,
       },
     ],
   },
   {
-    id: "sec",
-    title: "Performance & Security",
-    description: "Speed, hardening, and secure practices.",
+    id: "cloud",
+    title: "Cloud & DevOps Foundations",
+    description: "AWS Cloud Technical Essentials · Coursera",
     courses: [
       {
-        id: "sec-1",
-        title: "Web Performance Optimization",
+        id: "cloud-1",
+        title: "AWS Cloud Technical Essentials",
+        provider: "AWS · Coursera",
+        completed: false,
+      },
+    ],
+  },
+  {
+    id: "genai",
+    title: "Generative AI Foundations",
+    description: "Google · DeepLearning.AI",
+    courses: [
+      {
+        id: "genai-1",
+        title: "Introduction to Generative AI",
         provider: "Google",
         completed: true,
-        verifyUrl: "https://web.dev/verify/perf-optimization",
-        image: "/assets/projects/voltmaster (1).png",
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/WIWQWPY5B6PA",
+        image: "/assets/certs/Coursera WIWQWPY5B6PA-1.png",
       },
       {
-        id: "sec-2",
-        title: "OWASP Top 10",
-        provider: "Coursera",
+        id: "genai-2",
+        title: "Introduction to Large Language Models",
+        provider: "Google",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/R0HYCTWIA3AB",
+        image: "/assets/certs/Coursera R0HYCTWIA3AB-1.png",
+      },
+      {
+        id: "genai-3",
+        title: "Introduction to Responsible AI",
+        provider: "Google",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/UB4FW11JBCTI",
+        image: "/assets/certs/Coursera UB4FW11JBCTI-1.png",
+      },
+      {
+        id: "genai-4",
+        title: "Generative AI with LLMs",
+        provider: "DeepLearning.AI",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/0REIT0AD4BMS",
+        image: "/assets/certs/Coursera 0REIT0AD4BMS-1.png",
+      },
+      {
+        id: "genai-5",
+        title: "Responsible AI: Applying AI Principles with Google Cloud",
+        provider: "DeepLearning.AI",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/DP28UDA5CDO2",
+        image: "/assets/certs/Coursera DP28UDA5CDO2-1.png",
+
+      }
+    ],
+  },
+  {
+    id: "ml-spec",
+    title: "Machine Learning Specialization",
+    description: "DeepLearning.AI · Coursera",
+    courses: [
+      {
+        id: "ml-1",
+        title: "Supervised Machine Learning: Regression and Classification",
+        provider: "DeepLearning.AI · Coursera",
         completed: false,
-        verifyUrl: "https://coursera.org/verify/owasp-top10",
-        image: "/assets/projects/insignia (1).png",
+      },
+      {
+        id: "ml-2",
+        title: "Advanced Learning Algorithms",
+        provider: "DeepLearning.AI · Coursera",
+        completed: false,
       },
     ],
   },

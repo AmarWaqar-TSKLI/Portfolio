@@ -114,6 +114,39 @@ body {
   font-family: var(--font-amiamie);
 }
 
+/* Page scrollbar: full black */
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #000;
+}
+body::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 8px;
+}
+body {
+  scrollbar-color: #000 #000; /* thumb track */
+  scrollbar-width: thin;
+}
+
+/* Modal scrollbar: full black */
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  background: #000;
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 8px;
+}
+.modal-scroll {
+  scrollbar-color: #000 #000;
+  scrollbar-width: thin;
+}
+
 @utility clip-path {
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
 }

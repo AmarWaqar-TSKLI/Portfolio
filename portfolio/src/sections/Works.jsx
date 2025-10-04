@@ -5,12 +5,15 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import ProjectModal from "../components/ProjectModal";
 
 const Works = () => {
   const overlayRefs = useRef([]);
   const previewRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const text = `Featured projects that have been meticulously
     crafted with passion to drive
     results and impact.`;
@@ -169,7 +172,7 @@ const Works = () => {
   };
 
   return (
-    <section id="work" className="flex flex-col min-h-screen">
+    <section id="work" className="flex flex-col min-h-screen overflow-x-hidden">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}
@@ -178,7 +181,7 @@ const Works = () => {
         withScrollTrigger={true}
       />
       <div
-        className="relative flex flex-col font-light"
+        className="relative flex flex-col font-light overflow-x-hidden"
         onMouseMove={handleMouseMove}
       >
         {projects.map((project, index) => (
@@ -188,6 +191,7 @@ const Works = () => {
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() => { setSelectedProject(project); setModalOpen(true); }}
           >
             {/* overlay */}
             <div
@@ -217,86 +221,83 @@ const Works = () => {
                 </p>
               ))}
             </div>
-            {/* Mobile card - abstract monochrome with GSAP accents (no prominent images) */}
-            <div className="relative md:hidden w-full px-6">
-              {project.href ? (
-                <a href={project.href} target="_blank" rel="noreferrer" className="block">
-                  <div className="m-card relative rounded-2xl border border-white/10 bg-black text-white overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-transform duration-300 active:scale-[0.985]">
-                    {/* abstract pattern */}
-                    <div
-                      className="absolute inset-0 opacity-20 pointer-events-none"
-                      style={{
-                        backgroundImage:
-                          "repeating-linear-gradient(135deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 14px)",
-                      }}
-                    />
-                    {/* scan light */}
-                    <div className="m-scan absolute -top-full left-0 right-0 h-20 bg-gradient-to-b from-white/10 via-white/5 to-transparent pointer-events-none" />
-                    {/* content */}
-                    <div className="relative z-10 px-4 py-5 flex flex-col gap-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-lg font-medium tracking-wide leading-tight">{project.name}</h3>
-                        <Icon icon="lucide:arrow-up-right" className="size-5 opacity-80" />
-                      </div>
-                      <p className="text-[13px] text-white/70 leading-snug">
-                        {project.description}
-                      </p>
-                      <div className="h-px w-full bg-white/10 my-1" />
-                      <div className="flex flex-wrap gap-2">
-                        {project.frameworks.map((framework) => (
-                          <span
-                            key={framework.id}
-                            className="text-[10px] tracking-wider uppercase px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80"
-                          >
-                            {framework.name}
-                          </span>
-                        ))}
-                      </div>
-                      {/* subtle animated accents */}
-                      <div className="relative mt-2 h-5">
-                        <div className="m-stripe absolute left-0 top-1 h-[2px] w-24 bg-white/15" />
-                        <div className="m-stripe absolute left-10 top-3 h-[2px] w-16 bg-white/10" />
-                        <div className="m-stripe absolute left-28 top-2 h-[2px] w-8 bg-white/20" />
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ) : (
-                <div className="m-card relative rounded-2xl border border-white/10 bg-black text-white overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-transform duration-300 active:scale-[0.985]">
+            {/* Mobile card - sleek cyberpunk-inspired glass card */}
+            <div className="relative md:hidden w-full px-6 overflow-x-hidden">
+              <div
+                className="m-card relative rounded-2xl border border-white/10 bg-[#070707]/90 backdrop-blur text-white overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-transform duration-300 active:scale-[0.985] h-[224px]"
+                onClick={() => { setSelectedProject(project); setModalOpen(true); }}
+              >
+                {/* soft vignette + faint texture */}
+                <div
+                  className="absolute inset-0 opacity-25 pointer-events-none"
+                  style={{
+                    backgroundImage: [
+                      "radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,0.08), transparent 60%)",
+                      "radial-gradient(120% 80% at 100% 0%, rgba(255,255,255,0.08), transparent 60%)",
+                    ].join(",")
+                  }}
+                />
+                {/* diagonal band */}
+                <div className="pointer-events-none absolute -inset-x-24 top-1/3 h-24 -rotate-12">
                   <div
-                    className="absolute inset-0 opacity-20 pointer-events-none"
+                    className="absolute inset-0 border-y border-white/15"
                     style={{
-                      backgroundImage:
-                        "repeating-linear-gradient(135deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 14px)",
+                      backgroundImage: [
+                        "linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
+                        "repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 12px)",
+                      ].join(",")
                     }}
                   />
-                  <div className="m-scan absolute -top-full left-0 right-0 h-20 bg-gradient-to-b from-white/10 via-white/5 to-transparent pointer-events-none" />
-                  <div className="relative z-10 px-4 py-5 flex flex-col gap-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-lg font-medium tracking-wide leading-tight">{project.name}</h3>
+                </div>
+                {/* scan sweep (animated via GSAP) */}
+                <div className="m-scan absolute -top-full left-0 right-0 h-20 bg-gradient-to-b from-white/10 via-white/5 to-transparent pointer-events-none" />
+
+                {/* corner accents */}
+                <div className="pointer-events-none">
+                  <div className="absolute left-3 top-3 w-7 h-px bg-white/30" />
+                  <div className="absolute left-3 top-3 w-px h-7 bg-white/30" />
+                  <div className="absolute right-3 bottom-3 w-7 h-px bg-white/30" />
+                  <div className="absolute right-3 bottom-3 w-px h-7 bg-white/30" />
+                </div>
+
+                {/* content */}
+                <div className="relative z-10 px-4 py-5 flex flex-col gap-3 h-full">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md border border-white/20 bg-white/[0.03] max-w-[70%]">
+                      <span className="text-[11px] uppercase tracking-[0.22em] leading-none whitespace-nowrap overflow-hidden text-ellipsis">
+                        {project.name}
+                      </span>
                     </div>
-                    <p className="text-[13px] text-white/70 leading-snug">
-                      {project.description}
-                    </p>
-                    <div className="h-px w-full bg-white/10 my-1" />
-                    <div className="flex flex-wrap gap-2">
-                      {project.frameworks.map((framework) => (
-                        <span
-                          key={framework.id}
-                          className="text-[10px] tracking-wider uppercase px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80"
-                        >
-                          {framework.name}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="relative mt-2 h-5">
-                      <div className="m-stripe absolute left-0 top-1 h-[2px] w-24 bg-white/15" />
-                      <div className="m-stripe absolute left-10 top-3 h-[2px] w-16 bg-white/10" />
-                      <div className="m-stripe absolute left-28 top-2 h-[2px] w-8 bg-white/20" />
-                    </div>
+                    <Icon icon="lucide:arrow-up-right" className="size-5 opacity-80" />
+                  </div>
+                  <p
+                    className="text-[13px] text-white/75 leading-snug"
+                    style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+                  >
+                    {project.description}
+                  </p>
+                  <div className="h-px w-full bg-white/10 my-1" />
+                  <div className="flex flex-wrap gap-2">
+                    {project.frameworks.slice(0,3).map((framework) => (
+                      <span
+                        key={framework.id}
+                        className="text-[10px] tracking-wider uppercase px-2 py-1 rounded-md bg-white/5 border border-white/10 text-white/80"
+                      >
+                        {framework.name}
+                      </span>
+                    ))}
+                    {project.frameworks.length > 3 && (
+                      <span className="text-[10px] tracking-wider uppercase px-2 py-1 rounded-md bg-white/5 border border-white/10 text-white/80">+{project.frameworks.length - 3}</span>
+                    )}
+                  </div>
+                  {/* push accents to bottom for consistent vertical rhythm */}
+                  <div className="relative mt-auto h-5">
+                    <div className="m-stripe absolute left-0 top-1 h-[2px] w-24 bg-white/15" />
+                    <div className="m-stripe absolute left-10 top-3 h-[2px] w-16 bg-white/10" />
+                    <div className="m-stripe absolute left-28 top-2 h-[2px] w-8 bg-white/20" />
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         ))}
@@ -314,6 +315,7 @@ const Works = () => {
           )}
         </div>
       </div>
+      <ProjectModal project={selectedProject} open={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 };
