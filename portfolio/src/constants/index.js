@@ -426,7 +426,9 @@ export const coursesData = [
         id: "cloud-1",
         title: "AWS Cloud Technical Essentials",
         provider: "AWS · Coursera",
-        completed: false,
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/GZ4B10P1ZGP6",
+        image: "/assets/certs/Coursera GZ4B10P1ZGP6-1.png",
       },
     ],
   },
@@ -501,6 +503,12 @@ export const coursesData = [
       {
         id: "ml-2",
         title: "Advanced Learning Algorithms",
+        provider: "DeepLearning.AI · Coursera",
+        completed: false,
+      },
+      {
+        id: "ml-3",
+        title: "Unsupervised Learning, Recommenders, Reinforcement Learning",
         provider: "DeepLearning.AI · Coursera",
         completed: false,
       },
