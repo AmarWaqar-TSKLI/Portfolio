@@ -475,6 +475,15 @@ export const coursesData = [
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/DP28UDA5CDO2",
         image: "/assets/certs/Coursera DP28UDA5CDO2-1.png",
 
+      },
+      {
+        id: "genai-6",
+        title: "AI for Everyone",
+        provider: "DeepLearning.AI",
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/GPI92KZAWCD0",
+        image: "/assets/certs/Coursera GPI92KZAWCD0-1.png",
+
       }
     ],
   },
