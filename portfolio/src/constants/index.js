@@ -498,7 +498,9 @@ export const coursesData = [
         id: "ml-1",
         title: "Supervised Machine Learning: Regression and Classification",
         provider: "DeepLearning.AI · Coursera",
-        completed: false,
+        completed: true,
+        verifyUrl: "https://www.coursera.org/account/accomplishments/verify/0Q7NV0M9W5BF",
+        image: "/assets/certs/Coursera 0Q7NV0M9W5BF-1.png",
       },
       {
         id: "ml-2",
