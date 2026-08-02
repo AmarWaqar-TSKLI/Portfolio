@@ -148,6 +148,7 @@ class HalftoneTrailEngine {
     this.velocity = 0;
     this.hovering = false;
     this.reveal = 0;
+    this.targetReveal = 1;
     this.colorRGB = [0, 0, 0];
     this.targetColorRGB = [0, 0, 0];
 
@@ -242,17 +243,27 @@ class HalftoneTrailEngine {
     const gl = this.gl;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    this.reveal = lerp(this.reveal, 1.0, 0.04);
+    // targetReveal drops to 0 when the pointer is idle or off-window, which
+    // stops feeding the trail so decay can actually clear it — otherwise the
+    // blob keeps re-injecting at the last position forever.
+    const revealSpeed = this.targetReveal > this.reveal ? 0.05 : 0.2;
+    this.reveal = lerp(this.reveal, this.targetReveal, revealSpeed);
     const targetBrush = this.hovering ? this.config.hoverBrushSize : this.config.brushSize;
     this.currentBrushSize = lerp(this.currentBrushSize, targetBrush, 0.08);
     const targetOpacity = this.hovering ? this.config.hoverOpacity : this.config.opacity;
     this.currentOpacity = lerp(this.currentOpacity, targetOpacity, 0.08);
     this.velocity *= 0.9;
-    this.colorRGB = [
-      lerp(this.colorRGB[0], this.targetColorRGB[0], 0.12),
-      lerp(this.colorRGB[1], this.targetColorRGB[1], 0.12),
-      lerp(this.colorRGB[2], this.targetColorRGB[2], 0.12),
-    ];
+    if (this.reveal < 0.05) {
+      // trail is invisible — snap the color so re-entry over a different
+      // background never paints the previous section's color
+      this.colorRGB = [...this.targetColorRGB];
+    } else {
+      this.colorRGB = [
+        lerp(this.colorRGB[0], this.targetColorRGB[0], 0.08),
+        lerp(this.colorRGB[1], this.targetColorRGB[1], 0.08),
+        lerp(this.colorRGB[2], this.targetColorRGB[2], 0.08),
+      ];
+    }
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.fboB.fb);
     gl.viewport(0, 0, 512, 512);
@@ -344,13 +355,44 @@ const CustomCursor = () => {
     engineRef.current = engine;
     document.documentElement.classList.add("custom-cursor-active");
 
-    const onPointerMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      engine.updatePointer(e.clientX, e.clientY, rect);
-      const dark = isDarkBackgroundAt(e.clientX, e.clientY);
+    let lastX = window.innerWidth / 2;
+    let lastY = window.innerHeight / 2;
+    let lastMoveAt = 0;
+    let inside = false;
+
+    const sampleColor = () => {
+      const dark = isDarkBackgroundAt(lastX, lastY);
       engine.setTargetColor(dark ? [1, 1, 1] : [0, 0, 0]);
     };
+
+    const onPointerMove = (e) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastMoveAt = performance.now();
+      inside = true;
+      engine.targetReveal = 1;
+      engine.updatePointer(e.clientX, e.clientY, container.getBoundingClientRect());
+      sampleColor();
+    };
     window.addEventListener("pointermove", onPointerMove, { passive: true });
+
+    // Scrolling changes what's under a stationary cursor without firing any
+    // pointer event — re-sample periodically, and cut trail input once the
+    // pointer has been idle or has left the window.
+    const watcher = setInterval(() => {
+      if (!inside || performance.now() - lastMoveAt > 300) {
+        engine.targetReveal = 0;
+      } else {
+        sampleColor();
+      }
+    }, 120);
+
+    const onLeave = () => {
+      inside = false;
+      engine.targetReveal = 0;
+    };
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    window.addEventListener("blur", onLeave);
 
     const resize = () => {
       const rect = container.getBoundingClientRect();
@@ -366,8 +408,11 @@ const CustomCursor = () => {
       document.documentElement.classList.remove("custom-cursor-active");
       engine.destroy();
       engineRef.current = null;
+      clearInterval(watcher);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", resize);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("blur", onLeave);
     };
   }, []);
 

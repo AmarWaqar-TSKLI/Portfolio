@@ -5,6 +5,7 @@ import ServiceSummary from "./sections/ServiceSummary";
 import Services from "./sections/Services";
 import ReactLenis from "lenis/react";
 import CustomCursor from "./components/CustomCursor";
+import ParticlesBackground from "./components/ParticlesBackground";
 import About from "./sections/About";
 import Works from "./sections/Works";
 import Courses from "./sections/Courses";
@@ -44,8 +45,15 @@ const App = () => {
         } transition-opacity duration-1000`}
       >
         <Navbar />
-        <Hero />
-        <ServiceSummary />
+        {/* Particles overlay the first two (light) sections and stop exactly
+            where the black Services section begins — layered behind content,
+            no section heights changed. overflow-x-clip contains the sideways
+            text animations without clipping vertically (unlike hidden). */}
+        <div className="relative overflow-x-clip">
+          <ParticlesBackground color="#161616" />
+          <Hero />
+          <ServiceSummary />
+        </div>
         <Services />
         <About />
         <Works />

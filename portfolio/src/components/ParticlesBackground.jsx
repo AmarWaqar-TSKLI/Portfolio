@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
 
-const LINK_DISTANCE = 150;
-const MOUSE_LINK_DISTANCE = 180;
+const LINK_DISTANCE = 140;
+const GRAB_DISTANCE = 220;
+const SPEED_CAP = 1.8;
 
-const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
+// Note: deliberately does NOT honor prefers-reduced-motion — the rest of the
+// site (GSAP scroll animations, marquees) doesn't either, and gating only this
+// component made the particles freeze while everything else kept moving.
+const ParticlesBackground = ({ color = "#161616", className = "" }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
 
     let width = 0;
     let height = 0;
@@ -19,7 +20,87 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
     let animationId;
     const mouse = { x: null, y: null };
 
-    const countForWidth = (w) => (w < 768 ? 55 : 110);
+    const targetCount = () => {
+      const base = Math.round((width * height) / (width < 768 ? 9000 : 11000));
+      return Math.max(70, Math.min(base, 220));
+    };
+
+    const makeParticle = (x, y) => ({
+      x: x ?? Math.random() * width,
+      y: y ?? Math.random() * height,
+      vx: (Math.random() - 0.5) * 1.6,
+      vy: (Math.random() - 0.5) * 1.6,
+      r: Math.random() * 2.2 + 1.2,
+    });
+
+    function drawFrame() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const p of particles) {
+        // gentle pull toward the cursor so hovering visibly disturbs the field
+        if (mouse.x !== null) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const d = Math.hypot(dx, dy);
+          if (d < GRAB_DISTANCE && d > 1) {
+            p.vx += (dx / d) * 0.03;
+            p.vy += (dy / d) * 0.03;
+          }
+        }
+        const sp = Math.hypot(p.vx, p.vy);
+        if (sp > SPEED_CAP) {
+          p.vx = (p.vx / sp) * SPEED_CAP;
+          p.vy = (p.vy / sp) * SPEED_CAP;
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x <= 0) { p.x = 0; p.vx *= -1; }
+        if (p.x >= width) { p.x = width; p.vx *= -1; }
+        if (p.y <= 0) { p.y = 0; p.vy *= -1; }
+        if (p.y >= height) { p.y = height; p.vy *= -1; }
+      }
+
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = color;
+      for (let i = 0; i < particles.length; i++) {
+        const a = particles[i];
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const b = particles[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < LINK_DISTANCE) {
+            ctx.globalAlpha = (1 - dist / LINK_DISTANCE) * 0.3;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+
+        // grab: strong lines from nearby particles to the cursor
+        if (mouse.x !== null) {
+          const dist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+          if (dist < GRAB_DISTANCE) {
+            ctx.globalAlpha = (1 - dist / GRAB_DISTANCE) * 0.85;
+            ctx.lineWidth = 1.1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+            ctx.lineWidth = 0.8;
+          }
+        }
+      }
+
+      ctx.globalAlpha = 0.8;
+      ctx.fillStyle = color;
+      for (const p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
 
     function resize() {
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -31,65 +112,8 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: countForWidth(width) }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: Math.random() * 1.5 + 0.6,
-      }));
-    }
-
-    function drawFrame() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x <= 0 || p.x >= width) p.vx *= -1;
-        if (p.y <= 0 || p.y >= height) p.vy *= -1;
-      }
-
-      ctx.lineWidth = 0.6;
-      for (let i = 0; i < particles.length; i++) {
-        const a = particles[i];
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const b = particles[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < LINK_DISTANCE) {
-            ctx.strokeStyle = color;
-            ctx.globalAlpha = (1 - dist / LINK_DISTANCE) * 0.22;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-
-        if (mouse.x !== null) {
-          const dist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
-          if (dist < MOUSE_LINK_DISTANCE) {
-            ctx.strokeStyle = color;
-            ctx.globalAlpha = (1 - dist / MOUSE_LINK_DISTANCE) * 0.4;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-            ctx.lineWidth = 0.6;
-          }
-        }
-      }
-
-      ctx.globalAlpha = 0.45;
-      ctx.fillStyle = color;
-      for (const p of particles) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.globalAlpha = 1;
+      particles = Array.from({ length: targetCount() }, () => makeParticle());
+      drawFrame();
     }
 
     function loop() {
@@ -99,37 +123,43 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
 
     function onMouseMove(e) {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (x < 0 || y < 0 || x > width || y > height) {
+        mouse.x = null;
+        mouse.y = null;
+      } else {
+        mouse.x = x;
+        mouse.y = y;
+      }
     }
     function onMouseLeave() {
       mouse.x = null;
       mouse.y = null;
     }
-
-    resize();
-    // Always paint a frame synchronously right away, regardless of the rAF
-    // loop's fate — otherwise a throttled/backgrounded tab (or reduced-motion)
-    // can leave the canvas blank indefinitely.
-    drawFrame();
-    if (!prefersReducedMotion) {
-      animationId = requestAnimationFrame(loop);
+    function onClick(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (x < 0 || y < 0 || x > width || y > height) return;
+      for (let i = 0; i < 4; i++) particles.push(makeParticle(x, y));
+      while (particles.length > targetCount() + 40) particles.shift();
     }
 
-    const onResize = () => {
-      resize();
-      drawFrame();
-    };
+    resize();
+    animationId = requestAnimationFrame(loop);
 
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("click", onClick);
+    document.documentElement.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("click", onClick);
+      document.documentElement.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [color]);
 
@@ -137,6 +167,7 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
     <canvas
       ref={canvasRef}
       className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+      style={{ zIndex: -20 }}
       aria-hidden="true"
     />
   );
