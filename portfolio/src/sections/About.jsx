@@ -50,8 +50,12 @@ When I’m not shipping:
       <div className="flex flex-col items-center justify-between gap-16 px-10 pb-16 text-xl font-light tracking-wide lg:flex-row md:text-2xl lg:text-3xl text-white/60">
         <img
           ref={imgRef}
-          src="images/man.png"
+          src="images/man.jpg"
           alt="man"
+          loading="lazy"
+          decoding="async"
+          width={691}
+          height={947}
           className="w-md rounded-3xl"
         />
         <AnimatedTextLines text={aboutText} className={"w-full"} />

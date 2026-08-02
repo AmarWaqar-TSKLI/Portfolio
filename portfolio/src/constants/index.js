@@ -104,7 +104,7 @@ export const projects = [
     description:
       "A fragrance store offering a curated collection of men’s, women’s, and unisex perfumes with a smooth shopping experience.",
     href: "",
-    image: "/assets/projects/zarqais.png",
+    image: "/assets/projects/zarqais.jpg",
     bgImage: "/assets/backgrounds/blanket.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -126,7 +126,7 @@ export const projects = [
     description:
       "A next-gen chat platform where users can connect with friends, chat anonymously with people worldwide, or even talk to AI assistants.",
     href: "",
-    image: "/assets/projects/nym (1).png",
+    image: "/assets/projects/nym (1).jpg",
     bgImage: "/assets/backgrounds/curtains.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -147,7 +147,7 @@ export const projects = [
     description:
       "A complete event management system with hierarchical roles (President → AP → AVP → Head → Volunteer) and a customer portal for ticket purchases.",
     href: "",
-    image: "/assets/projects/softec (1).png",
+    image: "/assets/projects/softec (1).jpg",
     bgImage: "/assets/backgrounds/map.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -168,7 +168,7 @@ export const projects = [
     description:
       "A gaming platform where users can browse games, watch trailers, read reviews, and build their wishlist.",
     href: "",
-    image: "/assets/projects/gamestore.png",
+    image: "/assets/projects/gamestore.jpg",
     bgImage: "/assets/backgrounds/poster.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -190,7 +190,7 @@ export const projects = [
     description:
       "An interactive 3D shirt customizer where users can apply textures, logos, or even generate designs with AI.",
     href: "",
-    image: "/assets/projects/shirt (1).png",
+    image: "/assets/projects/shirt (1).jpg",
     bgImage: "/assets/backgrounds/table.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -211,7 +211,7 @@ export const projects = [
     description:
       "A data-driven app where users can upload datasets, clean them, generate insights, visualize trends, and ask AI questions about their data.",
     href: "",
-    image: "/assets/projects/smart-data-viz.png",
+    image: "/assets/projects/smart-data-viz.jpg",
     bgImage: "/assets/backgrounds/blanket.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -233,7 +233,7 @@ export const projects = [
     description:
       "An LLM-powered linting tool that analyzes code, detects bugs, and suggests fixes—bringing AI into the developer workflow.",
     href: "",
-    image: "/assets/projects/ai-linter.png",
+    image: "/assets/projects/ai-linter.jpg",
     bgImage: "/assets/backgrounds/curtains.jpg",
     frameworks: [
       { id: 1, name: "Python" },
@@ -253,7 +253,7 @@ export const projects = [
     description:
       "A GitHub Action bot that reviews pull requests, provides insights, and recommends improvements automatically.",
     href: "",
-    image: "/assets/projects/pr-insight-bot.png",
+    image: "/assets/projects/pr-insight-bot.jpg",
     bgImage: "/assets/backgrounds/poster.jpg",
     frameworks: [
       { id: 1, name: "Python" },
@@ -273,7 +273,7 @@ export const projects = [
     description:
       "A desktop app that helps users schedule appliance usage, optimize electricity consumption, and reduce costs.",
     href: "",
-    image: "/assets/projects/voltmaster (1).png",
+    image: "/assets/projects/voltmaster (1).jpg",
     bgImage: "/assets/backgrounds/map.jpg",
     frameworks: [
       { id: 1, name: "C++" },
@@ -293,7 +293,7 @@ export const projects = [
     description:
       "A 2D story-driven platformer where players complete mini-games, interact with NPCs, and unravel a mysterious narrative.",
     href: "",
-    image: "/assets/projects/insignia (1).png",
+    image: "/assets/projects/insignia (1).jpg",
     bgImage: "/assets/backgrounds/table.jpg",
     frameworks: [
       { id: 1, name: "C++" },
@@ -327,7 +327,7 @@ export const coursesData = [
         provider: "Meta · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/K8FVSPQ6RETF",
-        image: "/assets/certs/Coursera K8FVSPQ6RETF-1.png",
+        image: "/assets/certs/Coursera K8FVSPQ6RETF-1.jpg",
       },
       {
         id: "fe-2",
@@ -335,7 +335,7 @@ export const coursesData = [
         provider: "Meta · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/2KGZBC8J78IE",
-        image: "/assets/certs/Coursera 2KGZBC8J78IE-1.png",
+        image: "/assets/certs/Coursera 2KGZBC8J78IE-1.jpg",
       },
       {
         id: "fe-3",
@@ -343,7 +343,7 @@ export const coursesData = [
         provider: "Meta · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/4EQOY0YK6LGQ",
-        image: "/assets/certs/Coursera 4EQOY0YK6LGQ-1.png",
+        image: "/assets/certs/Coursera 4EQOY0YK6LGQ-1.jpg",
       },
       {
         id: "fe-4",
@@ -351,7 +351,7 @@ export const coursesData = [
         provider: "Meta · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/Z0U5ZQ0PVMSV",
-        image: "/assets/certs/Coursera Z0U5ZQ0PVMSV-1.png",
+        image: "/assets/certs/Coursera Z0U5ZQ0PVMSV-1.jpg",
       },
       {
         id: "fe-5",
@@ -359,7 +359,7 @@ export const coursesData = [
         provider: "Meta · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/CW4LFWCM8VEI",
-        image: "/assets/certs/Coursera CW4LFWCM8VEI-1.png",
+        image: "/assets/certs/Coursera CW4LFWCM8VEI-1.jpg",
       },
       {
         id: "fe-6",
@@ -380,7 +380,7 @@ export const coursesData = [
         provider: "University of Michigan · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/MS1C6OOFEK93",
-        image: "/assets/certs/Coursera MS1C6OOFEK93-1.png",
+        image: "/assets/certs/Coursera MS1C6OOFEK93-1.jpg",
       },
       {
         id: "py4e-2",
@@ -388,7 +388,7 @@ export const coursesData = [
         provider: "University of Michigan · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/MMU210FA3S9P",
-        image: "/assets/certs/Coursera MMU210FA3S9P-1.png",
+        image: "/assets/certs/Coursera MMU210FA3S9P-1.jpg",
       },
       {
         id: "py4e-3",
@@ -396,7 +396,7 @@ export const coursesData = [
         provider: "University of Michigan · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/FQOH6FL1Q2JX",
-        image: "/assets/certs/Coursera FQOH6FL1Q2JX-1.png",
+        image: "/assets/certs/Coursera FQOH6FL1Q2JX-1.jpg",
       },
       {
         id: "py4e-4",
@@ -404,7 +404,7 @@ export const coursesData = [
         provider: "University of Michigan · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/RKB08GBCMJBL",
-        image: "/assets/certs/Coursera RKB08GBCMJBL-1.png",
+        image: "/assets/certs/Coursera RKB08GBCMJBL-1.jpg",
       },
       {
         id: "py4e-5",
@@ -413,7 +413,7 @@ export const coursesData = [
         provider: "University of Michigan · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/MAMFYUUS453D",
-        image: "/assets/certs/Coursera MAMFYUUS453D-1.png",
+        image: "/assets/certs/Coursera MAMFYUUS453D-1.jpg",
       },
     ],
   },
@@ -428,7 +428,7 @@ export const coursesData = [
         provider: "AWS · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/GZ4B10P1ZGP6",
-        image: "/assets/certs/Coursera GZ4B10P1ZGP6-1.png",
+        image: "/assets/certs/Coursera GZ4B10P1ZGP6-1.jpg",
       },
     ],
   },
@@ -443,7 +443,7 @@ export const coursesData = [
         provider: "Google",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/WIWQWPY5B6PA",
-        image: "/assets/certs/Coursera WIWQWPY5B6PA-1.png",
+        image: "/assets/certs/Coursera WIWQWPY5B6PA-1.jpg",
       },
       {
         id: "genai-2",
@@ -451,7 +451,7 @@ export const coursesData = [
         provider: "Google",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/R0HYCTWIA3AB",
-        image: "/assets/certs/Coursera R0HYCTWIA3AB-1.png",
+        image: "/assets/certs/Coursera R0HYCTWIA3AB-1.jpg",
       },
       {
         id: "genai-3",
@@ -459,7 +459,7 @@ export const coursesData = [
         provider: "Google",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/UB4FW11JBCTI",
-        image: "/assets/certs/Coursera UB4FW11JBCTI-1.png",
+        image: "/assets/certs/Coursera UB4FW11JBCTI-1.jpg",
       },
       {
         id: "genai-4",
@@ -467,7 +467,7 @@ export const coursesData = [
         provider: "DeepLearning.AI",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/0REIT0AD4BMS",
-        image: "/assets/certs/Coursera 0REIT0AD4BMS-1.png",
+        image: "/assets/certs/Coursera 0REIT0AD4BMS-1.jpg",
       },
       {
         id: "genai-5",
@@ -475,7 +475,7 @@ export const coursesData = [
         provider: "DeepLearning.AI",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/DP28UDA5CDO2",
-        image: "/assets/certs/Coursera DP28UDA5CDO2-1.png",
+        image: "/assets/certs/Coursera DP28UDA5CDO2-1.jpg",
 
       },
       {
@@ -484,7 +484,7 @@ export const coursesData = [
         provider: "DeepLearning.AI",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/GPI92KZAWCD0",
-        image: "/assets/certs/Coursera GPI92KZAWCD0-1.png",
+        image: "/assets/certs/Coursera GPI92KZAWCD0-1.jpg",
 
       }
     ],
@@ -500,7 +500,7 @@ export const coursesData = [
         provider: "DeepLearning.AI · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/0Q7NV0M9W5BF",
-        image: "/assets/certs/Coursera 0Q7NV0M9W5BF-1.png",
+        image: "/assets/certs/Coursera 0Q7NV0M9W5BF-1.jpg",
       },
       {
         id: "ml-2",
@@ -508,7 +508,7 @@ export const coursesData = [
         provider: "DeepLearning.AI · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/0UN824WAB19B",
-        image: "/assets/certs/Coursera 0UN824WAB19B-1.png",
+        image: "/assets/certs/Coursera 0UN824WAB19B-1.jpg",
       },
       {
         id: "ml-3",
@@ -516,7 +516,7 @@ export const coursesData = [
         provider: "DeepLearning.AI · Coursera",
         completed: true,
         verifyUrl: "https://www.coursera.org/account/accomplishments/verify/IS1QN97DYXGK",
-        image: "/assets/certs/Coursera IS1QN97DYXGK-1.png",
+        image: "/assets/certs/Coursera IS1QN97DYXGK-1.jpg",
       },
     ],
   },
