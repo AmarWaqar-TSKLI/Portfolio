@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
-const LINK_DISTANCE = 130;
-const MOUSE_LINK_DISTANCE = 160;
+const LINK_DISTANCE = 150;
+const MOUSE_LINK_DISTANCE = 180;
 
 const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
   const canvasRef = useRef(null);
@@ -19,7 +19,7 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
     let animationId;
     const mouse = { x: null, y: null };
 
-    const countForWidth = (w) => (w < 768 ? 32 : 65);
+    const countForWidth = (w) => (w < 768 ? 55 : 110);
 
     function resize() {
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -108,19 +108,26 @@ const ParticlesBackground = ({ color = "#1a1a1a", className = "" }) => {
     }
 
     resize();
-    if (prefersReducedMotion) {
-      drawFrame();
-    } else {
+    // Always paint a frame synchronously right away, regardless of the rAF
+    // loop's fate — otherwise a throttled/backgrounded tab (or reduced-motion)
+    // can leave the canvas blank indefinitely.
+    drawFrame();
+    if (!prefersReducedMotion) {
       animationId = requestAnimationFrame(loop);
     }
 
-    window.addEventListener("resize", resize);
+    const onResize = () => {
+      resize();
+      drawFrame();
+    };
+
+    window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
     };
