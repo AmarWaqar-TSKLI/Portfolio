@@ -118,13 +118,19 @@ const Marquee = ({
   }
 
   useEffect(() => {
-    const tl = horizontalLoop(itemsRef.current, {
+    let cancelled = false;
+    // React StrictMode mounts this effect twice in dev; the phantom first
+    // mount's horizontalLoop call can leave residual transforms on these
+    // shared DOM nodes before this (real) mount measures them. Clear first
+    // so every invocation starts from a guaranteed-clean layout.
+    gsap.set(itemsRef.current, { clearProps: "transform" });
+    let tl = horizontalLoop(itemsRef.current, {
       repeat: -1,
       paddingRight: 30,
       reversed: reverse,
     });
 
-    Observer.create({
+    const observer = Observer.create({
       onChangeY(self) {
         let factor = 2.5;
         if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
@@ -140,7 +146,47 @@ const Marquee = ({
           .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
       },
     });
-    return () => tl.kill();
+
+    // Text widths are measured at mount, but custom fonts swap in
+    // asynchronously (font-display: swap) and reflow the text, which
+    // desyncs the loop's cached positions. Rebuild once fonts settle,
+    // and again on resize so the loop stays seamless.
+    const rebuild = () => {
+      // React StrictMode double-invokes this effect in dev; the phantom
+      // first mount's cleanup already ran by the time fonts resolve, so
+      // without this guard its rebuild fires anyway and clobbers the
+      // real mount's transforms via clearProps.
+      if (cancelled) return;
+      tl.kill();
+      // horizontalLoop measures layout from each item's current x/xPercent;
+      // without clearing the transforms GSAP already wrote, it re-measures
+      // from an already-displaced state and produces a broken loop.
+      gsap.set(itemsRef.current, { clearProps: "transform" });
+      tl = horizontalLoop(itemsRef.current, {
+        repeat: -1,
+        paddingRight: 30,
+        reversed: reverse,
+      });
+    };
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(rebuild);
+    }
+
+    let resizeTimeout;
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(rebuild, 200);
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelled = true;
+      tl.kill();
+      observer.kill();
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", onResize);
+    };
   }, [items, reverse]);
   return (
     <div
