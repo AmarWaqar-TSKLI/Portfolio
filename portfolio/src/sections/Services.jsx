@@ -4,6 +4,8 @@ import { servicesData } from "../constants";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 const Services = () => {
   const text = `I craft bold, results-driven digital solutions
   with clean code, modern design & AI
@@ -11,10 +13,6 @@ const Services = () => {
   const serviceRefs = useRef([]);
   const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
     useGSAP(() => {
-      // Ensure ScrollTrigger is available
-      if (!gsap.core.globals()["ScrollTrigger"]) {
-        gsap.registerPlugin(ScrollTrigger);
-      }
       serviceRefs.current.forEach((el) => {
         if (!el) return;
         gsap.from(el, {

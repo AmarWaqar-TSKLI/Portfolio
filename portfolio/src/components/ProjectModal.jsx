@@ -83,9 +83,13 @@ const Carousel = ({ slides }) => {
           onTouchEnd={onTouchEnd}
         >
           {slides.map((slide, i) => (
-            <div key={i} className="min-w-full aspect-video flex items-center justify-center overflow-hidden">
+            <div key={i} className="relative min-w-full aspect-video flex items-center justify-center overflow-hidden">
               {slide.type === "image" && (slide.src ? (
-                <img src={slide.src} alt={slide.alt || "slide"} className="object-cover w-full h-full" />
+                <>
+                  <img src={slide.src} alt={slide.alt || "slide"} className="object-cover w-full h-full" />
+                  {/* subtle vignette so bright/white screenshots still read as part of the dark UI */}
+                  <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_25px_rgba(0,0,0,0.35)]" />
+                </>
               ) : (
                 <PlaceholderBox label={slide.label || "Image coming soon"} />
               ))}

@@ -307,11 +307,21 @@ const Works = () => {
           className="fixed -top-2/6 left-0 z-50 overflow-hidden border-8 border-black bg-black pointer-events-none w-[960px] h-[540px] hidden md:flex opacity-0 items-center justify-center"
         >
           {currentIndex !== null && (
-            <img
-              src={projects[currentIndex].image}
-              alt="preview"
-              className="object-contain w-full h-full"
-            />
+            <>
+              {/* ambient blurred backdrop so light/white screenshots don't clash with the dark frame */}
+              <img
+                src={projects[currentIndex].image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover scale-125"
+                style={{ filter: "blur(40px) brightness(0.4) saturate(1.3)" }}
+              />
+              <img
+                src={projects[currentIndex].image}
+                alt="preview"
+                className="relative object-contain w-full h-full drop-shadow-2xl"
+              />
+            </>
           )}
         </div>
       </div>

@@ -103,7 +103,7 @@ export const projects = [
     name: "Zarqais E-commerce",
     description:
       "A fragrance store offering a curated collection of men’s, women’s, and unisex perfumes with a smooth shopping experience.",
-    href: "https://zarqais.com",
+    href: "",
     image: "/assets/projects/zarqais.png",
     bgImage: "/assets/backgrounds/blanket.jpg",
     frameworks: [
@@ -112,8 +112,8 @@ export const projects = [
       { id: 3, name: "PostgreSQL" },
       { id: 4, name: "Tailwind CSS" },
     ],
-    repoUrl: "https://github.com/your-org/zarqais", // replace when ready
-    liveUrl: "https://zarqais.com",
+    repoUrl: "",
+    liveUrl: "",
     features: [
       "Catalog browsing and search",
       "Cart and checkout flow",
@@ -134,7 +134,7 @@ export const projects = [
       { id: 3, name: "MongoDB" },
       { id: 4, name: "Socket.IO" },
     ],
-    repoUrl: "https://github.com/your-org/nym-chat", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/NYM-Next-Gen-Chat-App",
     features: [
       "Realtime chat with Socket.IO",
       "Anonymous + friends modes",
@@ -155,7 +155,7 @@ export const projects = [
       { id: 3, name: "Spring Boot" },
       { id: 4, name: "MariaDB" },
     ],
-    repoUrl: "https://github.com/your-org/softec", // replace when ready
+    repoUrl: "",
     features: [
       "Role-based access control",
       "Ticket sales customer portal",
@@ -168,7 +168,7 @@ export const projects = [
     description:
       "A gaming platform where users can browse games, watch trailers, read reviews, and build their wishlist.",
     href: "",
-    image: "/assets/projects/gameexplorer (1).png",
+    image: "/assets/projects/gamestore.png",
     bgImage: "/assets/backgrounds/poster.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -176,8 +176,8 @@ export const projects = [
       { id: 3, name: "MSSQL" },
       { id: 4, name: "Tailwind CSS" },
     ],
-    repoUrl: "https://github.com/your-org/gamestore", // replace when ready
-    liveUrl: "https://gamestore.example.com", // replace when live
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/GameStore2.0",
+    liveUrl: "https://game-store2-0.vercel.app",
     features: [
       "Trailers, reviews, and wishlists",
       "Genre filters and search",
@@ -198,7 +198,7 @@ export const projects = [
       { id: 3, name: "Three.js" },
       { id: 4, name: "GSAP" },
     ],
-    repoUrl: "https://github.com/your-org/3d-shirt-customizer", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/GSAP_Football_Customizer",
     features: [
       "Texture and logo application",
       "AI-generated designs",
@@ -220,7 +220,7 @@ export const projects = [
       { id: 4, name: "Pandas" },
       { id: 5, name: "Plotly" },
     ],
-    repoUrl: "https://github.com/your-org/smart-data-wiz", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/DataForge-Lite",
     features: [
       "Dataset upload and cleaning",
       "Interactive charts",
@@ -240,7 +240,7 @@ export const projects = [
       { id: 2, name: "PyTorch" },
       { id: 3, name: "Machine Learning" },
     ],
-    repoUrl: "https://github.com/your-org/ai-code-linter", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/AI_Code_Linter_Repo",
     features: [
       "Bug detection with LLMs",
       "Actionable fix suggestions",
@@ -260,7 +260,7 @@ export const projects = [
       { id: 2, name: "YAML" },
       { id: 3, name: "GitHub Actions" },
     ],
-    repoUrl: "https://github.com/your-org/pr-insight-bot", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/PR-Insight-Bot",
     features: [
       "Automated PR reviews",
       "Insights and recommendations",
@@ -280,7 +280,7 @@ export const projects = [
       { id: 2, name: "MySQL" },
       { id: 3, name: "Desktop Development" },
     ],
-    repoUrl: "https://github.com/your-org/voltmaster", // replace when ready
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/VoltMaster-Power-Management-Software",
     features: [
       "Usage scheduling",
       "Electricity optimization",
@@ -300,7 +300,7 @@ export const projects = [
       { id: 2, name: "SFML" },
       { id: 3, name: "Game Development" },
     ],
-    repoUrl: "https://github.com/your-org/realm-of-enigmas", // replace when ready
+    repoUrl: "",
     features: [
       "Story-driven gameplay",
       "NPC interactions",
@@ -310,7 +310,7 @@ export const projects = [
 ];
 
 export const socials = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/amar-waqar-6a1665225" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/amarwaqar" },
   { name: "GitHub", href: "https://github.com/AmarWaqar-TSKLI" },
   { name: "Instagram", href: "https://www.instagram.com/amar._.waqar" }
 ];
