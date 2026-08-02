@@ -48,8 +48,11 @@ const App = () => {
         {/* Particles overlay the first two (light) sections and stop exactly
             where the black Services section begins — layered behind content,
             no section heights changed. overflow-x-clip contains the sideways
-            text animations without clipping vertically (unlike hidden). */}
-        <div className="relative overflow-x-clip">
+            text animations without clipping vertically (unlike hidden).
+            pb-42 replaces ServiceSummary's old mb-42: a child's bottom margin
+            collapses OUT of the wrapper, leaving a particle-free strip before
+            the black section — padding keeps that gap inside the canvas. */}
+        <div className="relative overflow-x-clip pb-42">
           <ParticlesBackground color="#161616" />
           <Hero />
           <ServiceSummary />

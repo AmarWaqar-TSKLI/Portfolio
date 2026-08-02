@@ -3,6 +3,8 @@ import { useEffect, useRef } from "react";
 const LINK_DISTANCE = 150;
 const GRAB_DISTANCE = 220;
 const SPEED_CAP = 2.0;
+const LINK_SQ = LINK_DISTANCE * LINK_DISTANCE;
+const GRAB_SQ = GRAB_DISTANCE * GRAB_DISTANCE;
 
 // Note: deliberately does NOT honor prefers-reduced-motion — the rest of the
 // site (GSAP scroll animations, marquees) doesn't either, and gating only this
@@ -21,8 +23,8 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
     const mouse = { x: null, y: null };
 
     const targetCount = () => {
-      const base = Math.round((width * height) / 7000);
-      return Math.max(90, Math.min(base, width < 768 ? 140 : 320));
+      const base = Math.round((width * height) / 4500);
+      return Math.max(120, Math.min(base, width < 768 ? 180 : 500));
     };
 
     const makeParticle = (x, y) => ({
@@ -67,8 +69,11 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
 
         for (let j = i + 1; j < particles.length; j++) {
           const b = particles[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < LINK_DISTANCE) {
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK_SQ) {
+            const dist = Math.sqrt(d2);
             ctx.globalAlpha = (1 - dist / LINK_DISTANCE) * 0.35;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -79,8 +84,11 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
 
         // grab: strong lines from nearby particles to the cursor
         if (mouse.x !== null) {
-          const dist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
-          if (dist < GRAB_DISTANCE) {
+          const dx = a.x - mouse.x;
+          const dy = a.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < GRAB_SQ) {
+            const dist = Math.sqrt(d2);
             ctx.globalAlpha = (1 - dist / GRAB_DISTANCE) * 0.9;
             ctx.lineWidth = 1.3;
             ctx.beginPath();
@@ -149,14 +157,24 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
     resize();
     animationId = requestAnimationFrame(loop);
 
-    window.addEventListener("resize", resize);
+    // The wrapper's height can change after mount (font swaps, late layout) —
+    // observe it directly so the canvas always covers the full area instead
+    // of freezing at the initially-measured size.
+    const ro = new ResizeObserver(() => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      if (Math.abs(rect.width - width) > 1 || Math.abs(rect.height - height) > 1) {
+        resize();
+      }
+    });
+    ro.observe(canvas.parentElement);
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("click", onClick);
     document.documentElement.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      ro.disconnect();
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onClick);
       document.documentElement.removeEventListener("mouseleave", onMouseLeave);
