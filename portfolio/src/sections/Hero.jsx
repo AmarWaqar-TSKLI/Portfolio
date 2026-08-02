@@ -34,13 +34,16 @@ const Hero = () => {
         >
           <ambientLight intensity={0.5} />
           <Float speed={0.5}>
-            {/* The 130vh canvas renders everything ~1.3x bigger and lower than
-                the original 100vh one — scale 0.77 (≈1/1.3) and the +y offset
-                restore the original framing, leaving the extra canvas height
-                purely as overflow room so the ring isn't clipped anymore. */}
+            {/* Restores the exact original framing on the taller canvas.
+                Old: 100vh canvas, planet center projected at 50vh, 310.8px/unit.
+                New: 130vh canvas → center at 65vh, 404px/unit. So:
+                scale 310.8/404 = 0.77 keeps the size identical, and
+                y = (65vh-50vh in px)/404 = +0.355 lifts the center back to
+                50vh. The extra canvas height below is pure overflow room so
+                the ring can't be clipped at the section edge. */}
             <Planet
               scale={isMobile ? 0.54 : 0.77}
-              position={[0, -0.31, 0]}
+              position={[0, 0.355, 0]}
             />
           </Float>
           <Environment resolution={256}>

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-const LINK_DISTANCE = 140;
+const LINK_DISTANCE = 150;
 const GRAB_DISTANCE = 220;
-const SPEED_CAP = 1.8;
+const SPEED_CAP = 2.0;
 
 // Note: deliberately does NOT honor prefers-reduced-motion — the rest of the
 // site (GSAP scroll animations, marquees) doesn't either, and gating only this
@@ -21,16 +21,16 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
     const mouse = { x: null, y: null };
 
     const targetCount = () => {
-      const base = Math.round((width * height) / (width < 768 ? 9000 : 11000));
-      return Math.max(70, Math.min(base, 220));
+      const base = Math.round((width * height) / 7000);
+      return Math.max(90, Math.min(base, width < 768 ? 140 : 320));
     };
 
     const makeParticle = (x, y) => ({
       x: x ?? Math.random() * width,
       y: y ?? Math.random() * height,
-      vx: (Math.random() - 0.5) * 1.6,
-      vy: (Math.random() - 0.5) * 1.6,
-      r: Math.random() * 2.2 + 1.2,
+      vx: (Math.random() - 0.5) * 2.0,
+      vy: (Math.random() - 0.5) * 2.0,
+      r: Math.random() * 2.4 + 1.4,
     });
 
     function drawFrame() {
@@ -60,7 +60,7 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
         if (p.y >= height) { p.y = height; p.vy *= -1; }
       }
 
-      ctx.lineWidth = 0.8;
+      ctx.lineWidth = 1;
       ctx.strokeStyle = color;
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i];
@@ -69,7 +69,7 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
           const b = particles[j];
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
           if (dist < LINK_DISTANCE) {
-            ctx.globalAlpha = (1 - dist / LINK_DISTANCE) * 0.3;
+            ctx.globalAlpha = (1 - dist / LINK_DISTANCE) * 0.35;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -81,18 +81,18 @@ const ParticlesBackground = ({ color = "#161616", className = "" }) => {
         if (mouse.x !== null) {
           const dist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
           if (dist < GRAB_DISTANCE) {
-            ctx.globalAlpha = (1 - dist / GRAB_DISTANCE) * 0.85;
-            ctx.lineWidth = 1.1;
+            ctx.globalAlpha = (1 - dist / GRAB_DISTANCE) * 0.9;
+            ctx.lineWidth = 1.3;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 1;
           }
         }
       }
 
-      ctx.globalAlpha = 0.8;
+      ctx.globalAlpha = 0.85;
       ctx.fillStyle = color;
       for (const p of particles) {
         ctx.beginPath();

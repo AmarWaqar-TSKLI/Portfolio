@@ -357,7 +357,6 @@ const CustomCursor = () => {
 
     let lastX = window.innerWidth / 2;
     let lastY = window.innerHeight / 2;
-    let lastMoveAt = 0;
     let inside = false;
 
     const sampleColor = () => {
@@ -368,7 +367,6 @@ const CustomCursor = () => {
     const onPointerMove = (e) => {
       lastX = e.clientX;
       lastY = e.clientY;
-      lastMoveAt = performance.now();
       inside = true;
       engine.targetReveal = 1;
       engine.updatePointer(e.clientX, e.clientY, container.getBoundingClientRect());
@@ -376,14 +374,18 @@ const CustomCursor = () => {
     };
     window.addEventListener("pointermove", onPointerMove, { passive: true });
 
-    // Scrolling changes what's under a stationary cursor without firing any
-    // pointer event — re-sample periodically, and cut trail input once the
-    // pointer has been idle or has left the window.
+    // Visibility rule: the cursor stays visible the entire time the pointer
+    // is over the page — parked, scrolling, whatever — and disappears only
+    // when it leaves the window (or the window loses focus). The interval
+    // re-samples the background color and hover state during scrolls, since
+    // the page moves under a stationary pointer without any pointer event.
     const watcher = setInterval(() => {
-      if (!inside || performance.now() - lastMoveAt > 300) {
-        engine.targetReveal = 0;
-      } else {
+      if (inside) {
+        engine.targetReveal = 1;
+        engine.updatePointer(lastX, lastY, container.getBoundingClientRect());
         sampleColor();
+      } else {
+        engine.targetReveal = 0;
       }
     }, 120);
 
@@ -391,7 +393,12 @@ const CustomCursor = () => {
       inside = false;
       engine.targetReveal = 0;
     };
+    const onEnter = () => {
+      inside = true;
+      engine.targetReveal = 1;
+    };
     document.documentElement.addEventListener("mouseleave", onLeave);
+    document.documentElement.addEventListener("mouseenter", onEnter);
     window.addEventListener("blur", onLeave);
 
     const resize = () => {
@@ -412,6 +419,7 @@ const CustomCursor = () => {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", resize);
       document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
       window.removeEventListener("blur", onLeave);
     };
   }, []);
