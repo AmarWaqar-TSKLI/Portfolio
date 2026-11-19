@@ -190,7 +190,7 @@ export const projects = [
     name: "PaletteAI",
     description:
       "Describe a business in one line and Mistral 7B returns a colour palette with its reasoning, styled into swatches you can copy.",
-    href: "https://palette-ai-seven.vercel.app",
+    href: "https://palette-ai-generator.vercel.app",
     image: "/assets/projects/paletteai.jpg",
     frameworks: [
       { id: 1, name: "React" },
@@ -198,7 +198,7 @@ export const projects = [
       { id: 3, name: "Mistral 7B" },
     ],
     repoUrl: "https://github.com/AmarWaqar-TSKLI/PaletteAI",
-    liveUrl: "https://palette-ai-seven.vercel.app",
+    liveUrl: "https://palette-ai-generator.vercel.app",
     features: [
       "Idea to palette in one prompt",
       "Reasoning for every colour",
