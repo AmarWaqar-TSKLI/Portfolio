@@ -99,6 +99,113 @@ export const servicesData = [
 
 export const projects = [
   {
+    id: 101,
+    name: "Argus: Autonomous QA Agent",
+    description:
+      "An AI QA engineer. Point it at a web app and a LangGraph multi-agent system explores every page, runs free DOM checks first, spends a vision model only on what the DOM can't see, and files the bugs with screenshot evidence, for $0.00 in model costs.",
+    href: "",
+    image: "/assets/projects/argus.jpg",
+    frameworks: [
+      { id: 1, name: "Python" },
+      { id: 2, name: "LangGraph" },
+      { id: 3, name: "Playwright" },
+      { id: 4, name: "OpenCV" },
+      { id: 5, name: "Gemini" },
+    ],
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/argus",
+    liveUrl: "",
+    features: [
+      "Multi-agent graph: explore, audit, verify, report",
+      "SQLite checkpoints: a killed run resumes mid-page",
+      "Skeptic agent refutes hallucinated bugs",
+      "Files deduplicated GitHub issues",
+    ],
+  },
+  {
+    id: 102,
+    name: "Zestate",
+    description:
+      "A bilingual property marketplace for Pakistan, live in production. Listings, projects, agents and messaging in English and Urdu, from one Turborepo serving a Next.js web app and an Expo native app.",
+    href: "https://zestate.co",
+    image: "/assets/projects/zestate.jpg",
+    frameworks: [
+      { id: 1, name: "Next.js" },
+      { id: 2, name: "React Native" },
+      { id: 3, name: "TypeScript" },
+      { id: 4, name: "PostgreSQL" },
+    ],
+    repoUrl: "",
+    liveUrl: "https://zestate.co",
+    features: [
+      "AI-guided property search",
+      "English and Urdu throughout",
+      "Web and native apps from shared packages",
+    ],
+  },
+  {
+    id: 103,
+    name: "CMS Website Builder",
+    description:
+      "A site builder where a page is a description, not HTML. Publishing appends an immutable release in under 200 ms, a separate worker compiles it to a hosted site, static zip or container, and rollback is a single-column update.",
+    href: "",
+    image: "/assets/projects/cms.jpg",
+    frameworks: [
+      { id: 1, name: "Next.js" },
+      { id: 2, name: "TypeScript" },
+      { id: 3, name: "Prisma" },
+      { id: 4, name: "PostgreSQL" },
+      { id: 5, name: "Docker" },
+    ],
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/cms-website-builder",
+    liveUrl: "",
+    features: [
+      "Drag-and-drop editor with 2 s autosave",
+      "Immutable releases and instant rollback",
+      "Export as a static zip or a container",
+    ],
+  },
+  {
+    id: 104,
+    name: "Mirage: Cyber Deception",
+    description:
+      "A network that traps intruders. Fake admin panel, SSH server and S3 bucket, a trail of planted credentials, every move mapped to MITRE ATT&CK, and automatic containment. First alert in 16 ms, contained in 2.4 s, zero false alarms. Team project.",
+    href: "",
+    image: "/assets/projects/mirage.jpg",
+    frameworks: [
+      { id: 1, name: "Python" },
+      { id: 2, name: "FastAPI" },
+      { id: 3, name: "Docker" },
+      { id: 4, name: "WebSockets" },
+    ],
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/mirage",
+    liveUrl: "",
+    features: [
+      "Decoys with uniquely traceable honeytokens",
+      "Per-attacker risk scoring and auto-containment",
+      "Live command dashboard",
+    ],
+  },
+  {
+    id: 105,
+    name: "PaletteAI",
+    description:
+      "Describe a business in one line and Mistral 7B returns a colour palette with its reasoning, styled into swatches you can copy.",
+    href: "https://palette-ai-seven.vercel.app",
+    image: "/assets/projects/paletteai.jpg",
+    frameworks: [
+      { id: 1, name: "React" },
+      { id: 2, name: "Python" },
+      { id: 3, name: "Mistral 7B" },
+    ],
+    repoUrl: "https://github.com/AmarWaqar-TSKLI/PaletteAI",
+    liveUrl: "https://palette-ai-seven.vercel.app",
+    features: [
+      "Idea to palette in one prompt",
+      "Reasoning for every colour",
+      "Copy-ready swatches",
+    ],
+  },
+  {
     id: 1,
     name: "Zarqais E-commerce",
     description:
