@@ -123,9 +123,9 @@ export const projects = [
   },
   {
     id: 102,
-    name: "Zestate",
+    name: "Zestate (Web, iOS & Android)",
     description:
-      "A bilingual property marketplace for Pakistan, live in production. Listings, projects, agents and messaging in English and Urdu, from one Turborepo serving a Next.js web app and an Expo native app.",
+      "A bilingual property marketplace for Pakistan, live in production on the web and as a React Native app for iOS and Android. Listings, projects, agents and messaging in English and Urdu, with the Next.js site and the Expo app sharing code in one Turborepo.",
     href: "https://zestate.co",
     image: "/assets/projects/zestate.jpg",
     frameworks: [
@@ -139,7 +139,7 @@ export const projects = [
     features: [
       "AI-guided property search",
       "English and Urdu throughout",
-      "Web and native apps from shared packages",
+      "iOS and Android app built with React Native and Expo",
     ],
   },
   {
